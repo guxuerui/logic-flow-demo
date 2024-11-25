@@ -17,7 +17,7 @@ const data = ref({
         width: 80,
         height: 80,
         style: {
-          stroke: 'blue',
+          stroke: 'skyblue',
         },
         isPass: 'true', // 例如：在审批流场景，我们定义某个节点，这个节点通过了，节点为绿色，不通过节点为红色。
       },
@@ -51,8 +51,21 @@ onMounted(async () => {
   const lf = new LogicFlow({
     container: flowContainer.value!,
     grid: true,
+    // background: {
+    //   backgroundColor: 'rgba(0, 0, 0, 1)',
+    // },
   })
 
+  lf.setTheme({
+    baseEdge: {
+      stroke: 'orange',
+      strokeWidth: 4,
+    },
+    // line: {
+    //   stroke: 'green',
+    //   strokeWidth: 2,
+    // },
+  })
   lf.render(data.value)
 })
 </script>
