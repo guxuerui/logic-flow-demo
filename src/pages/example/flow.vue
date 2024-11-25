@@ -45,10 +45,23 @@ const data = ref({
   ],
 })
 
+// 流程图实例
+const lf = ref<LogicFlow | null>(null)
+
+const graphData = ref<LogicFlow.GraphData | unknown>()
+
+// 获取更新后的图表数据
+function getGraphData() {
+  if (!lf.value)
+    return
+
+  graphData.value = lf.value.getGraphData()
+}
+
 onMounted(async () => {
   await nextTick()
 
-  const lf = new LogicFlow({
+  lf.value = new LogicFlow({
     container: flowContainer.value!,
     grid: true,
     // background: {
@@ -56,7 +69,7 @@ onMounted(async () => {
     // },
   })
 
-  lf.setTheme({
+  lf.value.setTheme({
     baseEdge: {
       stroke: 'orange',
       strokeWidth: 4,
@@ -66,12 +79,22 @@ onMounted(async () => {
     //   strokeWidth: 2,
     // },
   })
-  lf.render(data.value)
+  lf.value.render(data.value)
 })
 </script>
 
 <template>
-  <div ref="flowContainer" w-full h-full />
+  <div flex="~" h-full>
+    <div class="markdown-body w-96">
+      <button btn @click="getGraphData">
+        获取graphData
+      </button>
+      <pre>
+        {{ graphData }}
+      </pre>
+    </div>
+    <div ref="flowContainer" flex="1" />
+  </div>
 </template>
 
 <style scoped>
