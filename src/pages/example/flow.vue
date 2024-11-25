@@ -10,9 +10,9 @@ const data = ref({
     {
       id: 'node_id_1',
       type: 'rect',
-      x: 50,
-      y: 50,
-      text: { x: 100, y: 100, value: '节点1' }, // 节点文本
+      x: 727,
+      y: 52,
+      text: { x: 777, y: 102, value: '节点1' }, // 节点文本
       properties: {
         width: 80,
         height: 80,
@@ -26,10 +26,59 @@ const data = ref({
     {
       id: 'node_id_2',
       type: 'circle',
-      x: 200,
-      y: 300,
-      text: { x: 300, y: 300, value: '节点2' },
+      x: 727,
+      y: 652,
+      text: { x: 827, y: 652, value: '节点2' },
       properties: {},
+    },
+    {
+      id: '1',
+      type: 'rect',
+      x: 100,
+      y: 60,
+      text: '矩形',
+    },
+    {
+      id: '2',
+      type: 'circle',
+      x: 300,
+      y: 60,
+      text: '圆形',
+    },
+    {
+      id: '3',
+      type: 'ellipse',
+      x: 500,
+      y: 60,
+      text: '椭圆',
+    },
+    {
+      id: '4',
+      type: 'polygon',
+      x: 100,
+      y: 200,
+      text: '多边形',
+    },
+    {
+      id: '5',
+      type: 'diamond',
+      x: 300,
+      y: 200,
+      text: '菱形',
+    },
+    {
+      id: '6',
+      type: 'text',
+      x: 500,
+      y: 200,
+      text: '纯文本节点',
+    },
+    {
+      id: '7',
+      type: 'html',
+      x: 100,
+      y: 320,
+      text: 'html节点',
     },
   ],
   edges: [
@@ -39,7 +88,7 @@ const data = ref({
       type: 'polyline',
       sourceNodeId: 'node_id_1',
       targetNodeId: 'node_id_2',
-      text: { x: 139, y: 200, value: '连线' }, // 连线文本
+      text: { x: 765, y: 241.25, value: '连线' }, // 连线文本
       properties: {},
     },
   ],
@@ -67,6 +116,33 @@ onMounted(async () => {
     // background: {
     //   backgroundColor: 'rgba(0, 0, 0, 1)',
     // },
+    style: {
+      rect: {
+        rx: 5,
+        ry: 5,
+        strokeWidth: 2,
+      },
+      circle: {
+        fill: '#f5f5f5',
+        stroke: '#666',
+      },
+      ellipse: {
+        fill: '#dae8fc',
+        stroke: '#6c8ebf',
+      },
+      polygon: {
+        fill: '#d5e8d4',
+        stroke: '#82b366',
+      },
+      diamond: {
+        fill: '#ffe6cc',
+        stroke: '#d79b00',
+      },
+      text: {
+        color: '#b85450',
+        fontSize: 12,
+      },
+    },
   })
 
   lf.value.setTheme({
