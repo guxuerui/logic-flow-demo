@@ -8,7 +8,7 @@ function jumpPage(folder: string, name: string) {
 </script>
 
 <template>
-  <div flex="~ gap2" justify-start p4>
+  <div flex="~ gap2" justify-center p4>
     <button btn @click="jumpPage('example', 'flow')">
       Go to flow page
     </button>
