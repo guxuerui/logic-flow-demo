@@ -1,6 +1,4 @@
-<h2 align="center">vite-vue3-template</h2>
-
-> This is my personal use of the vue3 template. Thanks to @antfu of [vitesse](https://github.com/antfu/vitesse)
+<h2 align="center">Logic Flow Demo</h2>
 
 ## Feat
 
@@ -18,16 +16,9 @@
 - [vite-plugin-vue-markdown](https://github.com/mdit-vue/vite-plugin-vue-markdown) - Render markdown file vith vite
 - [Eslint](https://github.com/antfu/eslint-config) - use @antfu/eslint-config
 
-### Clone to local
+### Start
 
 ```bash
-npx degit guxuerui/vite-vue3-template my-app
+npm run dev
 ```
 
-### Use
-
-```bash
-1. cd my-app
-2. pnpm i # If not pnpm, run: npm install -g pnpm
-3. pnpm run dev
-```
