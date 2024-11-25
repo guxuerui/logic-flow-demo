@@ -84,7 +84,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div flex="~" h-full>
+  <div flex="~ gap-x-4" h-full>
     <div class="markdown-body w-96">
       <button btn @click="getGraphData">
         获取graphData
