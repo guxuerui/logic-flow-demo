@@ -4,7 +4,7 @@ import '@logicflow/core/lib/style/index.css'
 
 const flowContainer = ref<HTMLElement | null>(null)
 
-const data = ref<Partial<LogicFlow.Options>>({
+const data = ref({
   nodes: [
     // 节点数据属性：节点1
     {
@@ -207,6 +207,16 @@ onMounted(async () => {
         hover="c-black"
         dark:hover="c-white"
         draggable
+        @mousedown="handleDragNode('diamond')"
+      >
+        <div w-10 h-10 i-mdi-cards-diamond-outline />
+      </button>
+      <button
+        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        hover="c-black"
+        dark:hover="c-white"
+        draggable
+        my-4
         @mousedown="handleDragNode('text')"
       >
         文本
