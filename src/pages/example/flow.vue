@@ -109,6 +109,15 @@ function getGraphData() {
   graphData.value = lf.value.getGraphData()
 }
 
+// 拖拽圆形
+function handleDragCircle() {
+  lf?.value?.dnd.startDrag({
+    type: 'circle',
+    r: 25,
+    text: 'circle',
+  })
+}
+
 onMounted(async () => {
   await nextTick()
 
@@ -163,15 +172,32 @@ onMounted(async () => {
 
 <template>
   <div flex="~ gap-x-4" h-full>
-    <div class="markdown-body w-96">
+    <div class="h-8xl w-24 py-4" b="2 gray-300 dark:gray-600" flex="~ col items-center">
+      <button
+        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        hover="c-black"
+        dark:hover="c-white"
+        draggable
+        @mousedown="handleDragCircle"
+      >
+        <div w-10 h-10 i-mdi-checkbox-blank-circle-outline />
+      </button>
+    </div>
+    <div ref="flowContainer" flex="1" />
+    <div class="markdown-body w-96" flex="~ col">
+      <button btn bg-orange-400 hover:bg-orange-600 @click="lf?.undo()">
+        上一步
+      </button>
+      <button btn my-4 @click="lf?.redo()">
+        下一步
+      </button>
       <button btn @click="getGraphData">
-        获取graphData
+        获取图表数据
       </button>
       <pre>
         {{ graphData }}
       </pre>
     </div>
-    <div ref="flowContainer" flex="1" />
   </div>
 </template>
 
