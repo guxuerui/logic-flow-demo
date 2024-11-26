@@ -101,39 +101,9 @@ onMounted(async () => {
         draggable
         @mousedown="handleDragNode(item.type)"
       >
-        <!-- <div w-10 h-10 i-mdi-checkbox-blank-circle-outline /> -->
         <div v-if="item.icon" w-10 h-10 :class="item.icon" />
         <span>{{ item.label }}</span>
       </button>
-      <!-- <button -->
-      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
-      <!--   hover="c-black" -->
-      <!--   dark:hover="c-white" -->
-      <!--   draggable -->
-      <!--   my-4 -->
-      <!--   @mousedown="handleDragNode('rect')" -->
-      <!-- > -->
-      <!--   <div w-10 h-10 i-mdi-crop-square /> -->
-      <!-- </button> -->
-      <!-- <button -->
-      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
-      <!--   hover="c-black" -->
-      <!--   dark:hover="c-white" -->
-      <!--   draggable -->
-      <!--   @mousedown="handleDragNode('diamond')" -->
-      <!-- > -->
-      <!--   <div w-10 h-10 i-mdi-cards-diamond-outline /> -->
-      <!-- </button> -->
-      <!-- <button -->
-      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
-      <!--   hover="c-black" -->
-      <!--   dark:hover="c-white" -->
-      <!--   draggable -->
-      <!--   my-4 -->
-      <!--   @mousedown="handleDragNode('text')" -->
-      <!-- > -->
-      <!--   文本 -->
-      <!-- </button> -->
     </div>
     <div ref="flowContainer" flex="1" />
     <div class="markdown-body w-96" flex="~ col">
