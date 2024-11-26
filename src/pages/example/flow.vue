@@ -4,98 +4,6 @@ import '@logicflow/core/lib/style/index.css'
 
 const flowContainer = ref<HTMLElement | null>(null)
 
-const data = ref({
-  nodes: [
-    // 节点数据属性：节点1
-    {
-      id: 'node_id_1',
-      type: 'rect',
-      x: 727,
-      y: 52,
-      // text: { x: 777, y: 102, value: '节点1' }, // 节点文本
-      text: '节点1',
-      properties: {
-        width: 80,
-        height: 80,
-        style: {
-          stroke: 'skyblue',
-        },
-        isPass: 'true', // 例如：在审批流场景，我们定义某个节点，这个节点通过了，节点为绿色，不通过节点为红色。
-      },
-    },
-    // 节点2
-    {
-      id: 'node_id_2',
-      type: 'circle',
-      x: 727,
-      y: 652,
-      // text: { x: 827, y: 652, value: '节点2' },
-      text: '节点2',
-      properties: {},
-    },
-    {
-      id: '1',
-      type: 'rect',
-      x: 100,
-      y: 60,
-      text: '矩形',
-    },
-    {
-      id: '2',
-      type: 'circle',
-      x: 300,
-      y: 60,
-      text: '圆形',
-    },
-    {
-      id: '3',
-      type: 'ellipse',
-      x: 500,
-      y: 60,
-      text: '椭圆',
-    },
-    {
-      id: '4',
-      type: 'polygon',
-      x: 100,
-      y: 200,
-      text: '多边形',
-    },
-    {
-      id: '5',
-      type: 'diamond',
-      x: 300,
-      y: 200,
-      text: '菱形',
-    },
-    {
-      id: '6',
-      type: 'text',
-      x: 500,
-      y: 200,
-      text: '纯文本节点',
-    },
-    {
-      id: '7',
-      type: 'html',
-      x: 100,
-      y: 320,
-      text: 'html节点',
-    },
-  ],
-  edges: [
-    // 边数据属性
-    {
-      id: 'edge_id',
-      type: 'polyline',
-      sourceNodeId: 'node_id_1',
-      targetNodeId: 'node_id_2',
-      text: { x: 765, y: 241.25, value: '连线' }, // 连线文本
-      properties: {},
-    },
-  ],
-})
-
 // 流程图实例
 const lf = ref<LogicFlow | null>(null)
 
@@ -176,7 +84,7 @@ onMounted(async () => {
     //   strokeWidth: 2,
     // },
   })
-  lf.value.render(data.value)
+  lf.value.render(flowData.value)
 })
 </script>
 
@@ -184,43 +92,48 @@ onMounted(async () => {
   <div flex="~ gap-x-4" h-full>
     <div class="h-8xl w-24 py-4" b="2 gray-300 dark:gray-600" flex="~ col items-center">
       <button
+        v-for="item, i in leftPanelData"
+        :key="i"
         class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        :class="item.extraClass"
         hover="c-black"
         dark:hover="c-white"
         draggable
-        @mousedown="handleDragNode('circle')"
+        @mousedown="handleDragNode(item.type)"
       >
-        <div w-10 h-10 i-mdi-checkbox-blank-circle-outline />
+        <!-- <div w-10 h-10 i-mdi-checkbox-blank-circle-outline /> -->
+        <div v-if="item.icon" w-10 h-10 :class="item.icon" />
+        <span>{{ item.label }}</span>
       </button>
-      <button
-        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
-        hover="c-black"
-        dark:hover="c-white"
-        draggable
-        my-4
-        @mousedown="handleDragNode('rect')"
-      >
-        <div w-10 h-10 i-mdi-crop-square />
-      </button>
-      <button
-        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
-        hover="c-black"
-        dark:hover="c-white"
-        draggable
-        @mousedown="handleDragNode('diamond')"
-      >
-        <div w-10 h-10 i-mdi-cards-diamond-outline />
-      </button>
-      <button
-        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
-        hover="c-black"
-        dark:hover="c-white"
-        draggable
-        my-4
-        @mousedown="handleDragNode('text')"
-      >
-        文本
-      </button>
+      <!-- <button -->
+      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
+      <!--   hover="c-black" -->
+      <!--   dark:hover="c-white" -->
+      <!--   draggable -->
+      <!--   my-4 -->
+      <!--   @mousedown="handleDragNode('rect')" -->
+      <!-- > -->
+      <!--   <div w-10 h-10 i-mdi-crop-square /> -->
+      <!-- </button> -->
+      <!-- <button -->
+      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
+      <!--   hover="c-black" -->
+      <!--   dark:hover="c-white" -->
+      <!--   draggable -->
+      <!--   @mousedown="handleDragNode('diamond')" -->
+      <!-- > -->
+      <!--   <div w-10 h-10 i-mdi-cards-diamond-outline /> -->
+      <!-- </button> -->
+      <!-- <button -->
+      <!--   class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200" -->
+      <!--   hover="c-black" -->
+      <!--   dark:hover="c-white" -->
+      <!--   draggable -->
+      <!--   my-4 -->
+      <!--   @mousedown="handleDragNode('text')" -->
+      <!-- > -->
+      <!--   文本 -->
+      <!-- </button> -->
     </div>
     <div ref="flowContainer" flex="1" />
     <div class="markdown-body w-96" flex="~ col">
