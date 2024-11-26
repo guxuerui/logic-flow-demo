@@ -4,7 +4,7 @@ import '@logicflow/core/lib/style/index.css'
 
 const flowContainer = ref<HTMLElement | null>(null)
 
-const data = ref({
+const data = ref<Partial<LogicFlow.Options>>({
   nodes: [
     // 节点数据属性：节点1
     {
@@ -109,12 +109,22 @@ function getGraphData() {
   graphData.value = lf.value.getGraphData()
 }
 
-// 拖拽圆形
-function handleDragCircle() {
+// 拖拽图形
+function handleDragNode(type: string) {
   lf?.value?.dnd.startDrag({
-    type: 'circle',
+    type,
     r: 25,
-    text: 'circle',
+    text: type,
+  })
+
+  lf?.value?.setTheme({
+    text: {
+      color: 'green',
+      fontSize: 18,
+      background: {
+        fill: 'transparent',
+      },
+    },
   })
 }
 
@@ -178,9 +188,28 @@ onMounted(async () => {
         hover="c-black"
         dark:hover="c-white"
         draggable
-        @mousedown="handleDragCircle"
+        @mousedown="handleDragNode('circle')"
       >
         <div w-10 h-10 i-mdi-checkbox-blank-circle-outline />
+      </button>
+      <button
+        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        hover="c-black"
+        dark:hover="c-white"
+        draggable
+        my-4
+        @mousedown="handleDragNode('rect')"
+      >
+        <div w-10 h-10 i-mdi-crop-square />
+      </button>
+      <button
+        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        hover="c-black"
+        dark:hover="c-white"
+        draggable
+        @mousedown="handleDragNode('text')"
+      >
+        文本
       </button>
     </div>
     <div ref="flowContainer" flex="1" />
