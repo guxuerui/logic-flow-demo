@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import path from 'node:path'
+import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -10,7 +11,23 @@ import Unocss from 'unocss/vite'
 import Markdown from 'vite-plugin-vue-markdown'
 import prism from 'markdown-it-prism'
 
+// import type { UserConfig as VitestUserConfigInterface } from 'vitest/config'
+// import type { InlineConfig } from 'vitest'
+// import type { UserConfig } from 'vite'
+//
+// interface VitestConfigExport extends UserConfig {
+//   test: InlineConfig
+// }
+
 export default defineConfig({
+  // https://github.com/vitest-dev/vitest
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    threads: false,
+    watch: false,
+    include: ['**/*.test.{js,tsx,ts}'],
+  },
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -18,7 +35,6 @@ export default defineConfig({
   },
   plugins: [
     Vue({
-      reactivityTransform: true,
       include: [/\.vue$/, /\.md$/],
       script: {
         defineModel: true,
@@ -67,9 +83,4 @@ export default defineConfig({
     // see unocss.config.ts for config
     Unocss(),
   ],
-
-  // https://github.com/vitest-dev/vitest
-  test: {
-    environment: 'jsdom',
-  },
-})
+} as UserConfig)
