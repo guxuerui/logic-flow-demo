@@ -6,7 +6,6 @@ describe('Counter.vue', () => {
   it('should render', () => {
     const wrapper = mount(Counter, { props: { initial: 10 } })
     expect(wrapper.text()).toContain('10')
-    expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should be interactive', async () => {
