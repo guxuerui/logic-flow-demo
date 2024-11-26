@@ -46,3 +46,10 @@ export interface BlockArea {
   rotate: BlockRotate
   areas: Area[]
 }
+
+export interface LeftPanelData {
+  type: string
+  icon?: string
+  extraClass?: string
+  label: string
+}
