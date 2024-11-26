@@ -12,7 +12,8 @@ const data = ref({
       type: 'rect',
       x: 727,
       y: 52,
-      text: { x: 777, y: 102, value: '节点1' }, // 节点文本
+      // text: { x: 777, y: 102, value: '节点1' }, // 节点文本
+      text: '节点1',
       properties: {
         width: 80,
         height: 80,
@@ -28,7 +29,8 @@ const data = ref({
       type: 'circle',
       x: 727,
       y: 652,
-      text: { x: 827, y: 652, value: '节点2' },
+      // text: { x: 827, y: 652, value: '节点2' },
+      text: '节点2',
       properties: {},
     },
     {
