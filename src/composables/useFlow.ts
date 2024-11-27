@@ -97,18 +97,18 @@ export const flowData = ref({
 export const leftPanelData = ref<LeftPanelData[]>([
   {
     type: 'circle',
-    icon: 'i-mdi-checkbox-blank-circle-outline',
+    icon: 'i-carbon-circle-outline',
     label: '圆形',
   },
   {
     type: 'rect',
-    icon: 'i-mdi-crop-square',
+    icon: 'i-carbon-square-outline',
     extraClass: 'my-4',
     label: '矩形',
   },
   {
     type: 'diamond',
-    icon: 'i-mdi-cards-diamond-outline',
+    icon: 'i-carbon-diamond-outline',
     label: '菱形',
   },
   {
