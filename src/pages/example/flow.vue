@@ -139,7 +139,7 @@ function deleteEdge() {
       </button>
     </div>
     <div ref="flowContainer" flex="1" />
-    <div class="markdown-body w-96" flex="~ col">
+    <div class="markdown-body w-72" flex="~ col">
       <button :disabled="!currentEdgeId" bg-red-400 btn hover:bg-red-600 @click="deleteEdge">
         删除边
       </button>
