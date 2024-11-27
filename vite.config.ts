@@ -1,15 +1,15 @@
 /// <reference types="vitest" />
 
-import path from 'node:path'
 import type { UserConfig } from 'vite'
-import { defineConfig } from 'vite'
+import path from 'node:path'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
-import Unocss from 'unocss/vite'
-import Markdown from 'vite-plugin-vue-markdown'
 import prism from 'markdown-it-prism'
+import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
+import Pages from 'vite-plugin-pages'
+import Markdown from 'vite-plugin-vue-markdown'
 
 // import type { UserConfig as VitestUserConfigInterface } from 'vitest/config'
 // import type { InlineConfig } from 'vitest'
