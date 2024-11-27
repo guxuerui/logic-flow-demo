@@ -94,23 +94,23 @@ onMounted(async () => {
       <button
         v-for="item, i in leftPanelData"
         :key="i"
-        class="icon-btn !outline-none vertical-sub c-gray-800 dark:c-gray-200"
+        class="vertical-sub c-gray-800 icon-btn dark:c-gray-200 !outline-none"
         :class="item.extraClass"
         hover="c-black"
         dark:hover="c-white"
         draggable
         @mousedown="handleDragNode(item.type)"
       >
-        <div v-if="item.icon" w-10 h-10 :class="item.icon" />
+        <div v-if="item.icon" h-10 w-10 :class="item.icon" />
         <span>{{ item.label }}</span>
       </button>
     </div>
     <div ref="flowContainer" flex="1" />
     <div class="markdown-body w-96" flex="~ col">
-      <button btn bg-orange-400 hover:bg-orange-600 @click="lf?.undo()">
+      <button bg-orange-400 btn hover:bg-orange-600 @click="lf?.undo()">
         上一步
       </button>
-      <button btn my-4 @click="lf?.redo()">
+      <button my-4 btn @click="lf?.redo()">
         下一步
       </button>
       <button btn @click="getGraphData">
