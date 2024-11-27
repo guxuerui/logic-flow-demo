@@ -119,3 +119,5 @@ export const leftPanelData = ref<LeftPanelData[]>([
 ])
 
 export const currentEdgeId = ref('')
+
+export const currentNodeId = ref('')

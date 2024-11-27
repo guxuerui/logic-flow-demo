@@ -32,6 +32,7 @@ declare global {
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
   const currentEdgeId: typeof import('./src/composables/useFlow')['currentEdgeId']
+  const currentNodeId: typeof import('./src/composables/useFlow')['currentNodeId']
   const customRef: typeof import('vue')['customRef']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
@@ -326,6 +327,7 @@ declare module 'vue' {
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly currentEdgeId: UnwrapRef<typeof import('./src/composables/useFlow')['currentEdgeId']>
+    readonly currentNodeId: UnwrapRef<typeof import('./src/composables/useFlow')['currentNodeId']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>

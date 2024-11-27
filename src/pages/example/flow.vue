@@ -3,6 +3,7 @@ import LogicFlow from '@logicflow/core'
 import '@logicflow/core/lib/style/index.css'
 
 const flowContainer = ref<HTMLElement | null>(null)
+const currNodeStyle = ref<any>({})
 
 // 流程图实例
 const lf = ref<LogicFlow | null>(null)
@@ -111,12 +112,42 @@ onMounted(async () => {
     }
     // lf.value?.graphModel?.selectEdgeById(data.id, true)
   })
+
+  // 监听节点 点击事件
+  lf.value.on('node:click', ({ data }) => {
+    if (!Object.keys(currNodeStyle.value).length)
+      currNodeStyle.value = data.properties ?? {}
+
+    const nodeModel = lf.value?.getNodeModelById(data.id)
+
+    if (!currentNodeId.value) {
+      // currNodeStyle.value = data.properties ?? {}
+
+      nodeModel?.setProperties({
+        style: {
+          stroke: 'red',
+          strokeWidth: 6,
+        },
+      })
+      currentNodeId.value = data.id
+    }
+    else {
+      nodeModel?.setProperties(currNodeStyle.value?.style ? currNodeStyle.value : { ...currNodeStyle.value, style: {} })
+      currentNodeId.value = ''
+    }
+  })
 })
 
 // 删除边
 function deleteEdge() {
   lf.value?.graphModel?.deleteEdgeById(currentEdgeId.value)
   currentEdgeId.value = ''
+}
+
+// 删除节点
+function deleteNode() {
+  lf.value?.graphModel?.deleteNode(currentNodeId.value)
+  currentNodeId.value = ''
 }
 </script>
 
@@ -143,13 +174,16 @@ function deleteEdge() {
       <button :disabled="!currentEdgeId" bg-red-400 btn hover:bg-red-600 @click="deleteEdge">
         删除边
       </button>
-      <button my-4 bg-orange-400 btn hover:bg-orange-600 @click="lf?.undo()">
+      <button :disabled="!currentNodeId" my-4 bg-red-400 btn hover:bg-red-600 @click="deleteNode">
+        删除节点
+      </button>
+      <button bg-orange-400 btn hover:bg-orange-600 @click="lf?.undo()">
         上一步
       </button>
-      <button btn @click="lf?.redo()">
+      <button my-4 btn @click="lf?.redo()">
         下一步
       </button>
-      <button my-4 btn @click="getGraphData">
+      <button btn @click="getGraphData">
         获取图表数据
       </button>
       <pre>
