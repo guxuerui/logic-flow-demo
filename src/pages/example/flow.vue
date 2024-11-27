@@ -84,8 +84,40 @@ onMounted(async () => {
     //   strokeWidth: 2,
     // },
   })
+
   lf.value.render(flowData.value)
+
+  // 监听边点击事件
+  lf.value.on('edge:click', ({ data }) => {
+    const edgeModel = lf.value?.getEdgeModelById(data.id)
+
+    if (!currentEdgeId.value) {
+      edgeModel?.setProperties({
+        style: {
+          stroke: 'red',
+          strokeWidth: 6,
+        },
+      })
+      currentEdgeId.value = data.id
+    }
+    else {
+      edgeModel?.setProperties({
+        style: {
+          stroke: 'orange',
+          strokeWidth: 4,
+        },
+      })
+      currentEdgeId.value = ''
+    }
+    // lf.value?.graphModel?.selectEdgeById(data.id, true)
+  })
 })
+
+// 删除边
+function deleteEdge() {
+  lf.value?.graphModel?.deleteEdgeById(currentEdgeId.value)
+  currentEdgeId.value = ''
+}
 </script>
 
 <template>
@@ -108,13 +140,16 @@ onMounted(async () => {
     </div>
     <div ref="flowContainer" flex="1" />
     <div class="markdown-body w-96" flex="~ col">
-      <button bg-orange-400 btn hover:bg-orange-600 @click="lf?.undo()">
+      <button :disabled="!currentEdgeId" bg-red-400 btn hover:bg-red-600 @click="deleteEdge">
+        删除边
+      </button>
+      <button my-4 bg-orange-400 btn hover:bg-orange-600 @click="lf?.undo()">
         上一步
       </button>
-      <button my-4 btn @click="lf?.redo()">
+      <button btn @click="lf?.redo()">
         下一步
       </button>
-      <button btn @click="getGraphData">
+      <button my-4 btn @click="getGraphData">
         获取图表数据
       </button>
       <pre>

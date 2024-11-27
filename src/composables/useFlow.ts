@@ -117,3 +117,5 @@ export const leftPanelData = ref<LeftPanelData[]>([
     label: '纯文本',
   },
 ])
+
+export const currentEdgeId = ref('')
