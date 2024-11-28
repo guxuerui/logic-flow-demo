@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import LogicFlow from '@logicflow/core'
+import { Menu } from '@logicflow/extension'
+import '@logicflow/extension/lib/style/index.css'
 import '@logicflow/core/lib/style/index.css'
 
 const flowContainer = ref<HTMLElement | null>(null)
@@ -73,6 +75,8 @@ onMounted(async () => {
         fontSize: 12,
       },
     },
+    // 注册组件
+    plugins: [Menu],
   })
 
   lf.value.setTheme({
@@ -86,6 +90,59 @@ onMounted(async () => {
     // },
   })
 
+  // 为菜单追加选项
+  // @ts-expect-error ignore
+  lf.value?.extension.menu.addMenuConfig({
+    nodeMenu: [
+      {
+        text: '分享',
+        callback() {
+          alert('分享成功！')
+        },
+      },
+      {
+        text: '属性',
+        callback(node: LogicFlow.NodeData) {
+          alert(`
+              节点id：${node.id}
+              节点类型：${node.type}
+              节点坐标：(x: ${node.x}, y: ${node.y})
+            `)
+        },
+      },
+    ],
+    edgeMenu: [
+      {
+        text: '属性',
+        callback(edge: LogicFlow.EdgeData) {
+          const {
+            id,
+            type,
+            startPoint,
+            endPoint,
+            sourceNodeId,
+            targetNodeId,
+          } = edge
+          alert(`
+              边id：${id}
+              边类型：${type}
+              边起点坐标：(startPoint: [${startPoint.x}, ${startPoint.y}])
+              边终点坐标：(endPoint: [${endPoint.x}, ${endPoint.y}])
+              源节点id：${sourceNodeId}
+              目标节点id：${targetNodeId}
+            `)
+        },
+      },
+    ],
+    graphMenu: [
+      {
+        text: '分享',
+        callback() {
+          alert('分享成功！')
+        },
+      },
+    ],
+  })
   lf.value.render(flowData.value)
 
   // 监听边点击事件
