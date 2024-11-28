@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@logicflow/core": "^2.0.8",
+    "@logicflow/extension": "^2.0.13",
     "@vueuse/core": "v9.1.0",
     "@vueuse/head": "v0.7.9",
     "axios": "^1.7.8",
