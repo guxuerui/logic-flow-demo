@@ -178,8 +178,6 @@ onMounted(async () => {
     const nodeModel = lf.value?.getNodeModelById(data.id)
 
     if (!currentNodeId.value) {
-      // currNodeStyle.value = data.properties ?? {}
-
       nodeModel?.setProperties({
         style: {
           stroke: 'red',
