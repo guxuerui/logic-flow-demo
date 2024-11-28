@@ -118,6 +118,8 @@ export const leftPanelData = ref<LeftPanelData[]>([
   },
 ])
 
+// 当前选中边
 export const currentEdgeId = ref('')
 
+// 当前选中节点
 export const currentNodeId = ref('')
