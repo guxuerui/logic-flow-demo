@@ -13,7 +13,7 @@ const lf = ref<LogicFlow | null>(null)
 const graphData = ref<LogicFlow.GraphData | unknown>()
 
 // 获取更新后的图表数据
-function getGraphData() {
+function getCurrGraphData() {
   if (!lf.value)
     return
 
@@ -39,10 +39,10 @@ function handleDragNode(type: string) {
   })
 }
 
+const logicOptions = ref<LogicFlow.Options>()
 onMounted(async () => {
   await nextTick()
-
-  lf.value = new LogicFlow({
+  logicOptions.value = {
     container: flowContainer.value!,
     grid: true,
     // background: {
@@ -77,7 +77,8 @@ onMounted(async () => {
     },
     // 注册组件
     plugins: [Menu],
-  })
+  }
+  lf.value = new LogicFlow(logicOptions.value)
 
   lf.value.setTheme({
     baseEdge: {
@@ -206,6 +207,29 @@ function deleteNode() {
   lf.value?.graphModel?.deleteNode(currentNodeId.value)
   currentNodeId.value = ''
 }
+
+// 监听dark模式变化
+watch([() => isDark.value, () => lf.value], ([newDark, newLf], [oldDark, oldLf]) => {
+  // 获取 DOM 元素
+  const lfMenu = document.querySelector('.lf-menu')
+  const lfGraph = document.querySelector('.lf-graph')
+
+  // 检查 DOM 是否存在
+  if (!lfMenu || !lfGraph)
+    return
+
+  // 处理逻辑
+  if (newDark !== oldDark || newLf !== oldLf) {
+    if (newDark) {
+      lfMenu.classList.add('lf-menu-dark')
+      lfGraph.classList.add('lf-graph-dark')
+    }
+    else {
+      lfMenu.classList.remove('lf-menu-dark')
+      lfGraph.classList.remove('lf-graph-dark')
+    }
+  }
+}, { immediate: true })
 </script>
 
 <template>
@@ -240,7 +264,7 @@ function deleteNode() {
       <button my-4 btn @click="lf?.redo()">
         下一步
       </button>
-      <button btn @click="getGraphData">
+      <button btn @click="getCurrGraphData">
         获取图表数据
       </button>
       <pre>
@@ -250,5 +274,14 @@ function deleteNode() {
   </div>
 </template>
 
-<style scoped>
+<style>
+.lf-menu-dark {
+  background: #000;
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.8)
+}
+.lf-graph-dark {
+  background: #000;
+
+}
 </style>
