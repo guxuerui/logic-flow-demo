@@ -96,6 +96,8 @@ onMounted(async () => {
     nodeMenu: [
       {
         text: '分享',
+        icon: true,
+        className: 'text-green-500',
         callback() {
           alert('分享成功！')
         },
