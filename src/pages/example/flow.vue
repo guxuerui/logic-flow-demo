@@ -219,7 +219,7 @@ function deleteNode() {
         draggable
         @mousedown="handleDragNode(item.type)"
       >
-        <!-- <div v-if="item.icon" h-10 w-10 class="i-carbon-diamond-outline" /> -->
+        <!-- <div v-if="item.icon" h-10 w-10 class="i-carbon-assembly" /> -->
         <div v-if="item.icon" h-10 w-10 :class="item.icon" />
         <span>{{ item.label }}</span>
       </button>

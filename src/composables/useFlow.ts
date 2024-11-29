@@ -112,6 +112,17 @@ export const leftPanelData = ref<LeftPanelData[]>([
     label: '菱形',
   },
   {
+    type: 'ellipse',
+    icon: 'i-mdi-ellipse-outline',
+    label: '椭圆',
+    extraClass: 'my-4',
+  },
+  {
+    type: 'polygon',
+    icon: 'i-carbon-assembly',
+    label: '多边形',
+  },
+  {
     type: 'text',
     extraClass: 'my-4',
     label: '纯文本',
