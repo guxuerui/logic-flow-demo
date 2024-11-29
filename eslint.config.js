@@ -6,6 +6,7 @@ export default antfu({
   vue: true,
   rules: {
     '@typescript-eslint/no-empty-object-type': 'off',
+    'no-alert': 'off',
   },
   ignores: [
     '.DS_Store',
