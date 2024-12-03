@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import LogicFlow from '@logicflow/core'
 import { Menu } from '@logicflow/extension'
+import { register } from '@logicflow/vue-node-registry'
+import StartNode from '~/components/StartNode.vue'
 import '@logicflow/extension/lib/style/index.css'
 import '@logicflow/core/lib/style/index.css'
 
@@ -9,6 +11,7 @@ const currNodeStyle = ref<any>({})
 
 // 流程图实例
 const lf = ref<LogicFlow | null>(null)
+const flowId = ref('')
 
 const graphData = ref<LogicFlow.GraphData | unknown>()
 
@@ -26,6 +29,10 @@ function handleDragNode(type: string) {
     type,
     r: 25,
     text: type,
+    properties: {
+      width: 96,
+      height: 96,
+    },
   })
 
   lf?.value?.setTheme({
@@ -146,7 +153,19 @@ onMounted(async () => {
       },
     ],
   })
+
+  // 注册自定义节点
+  register({
+    type: 'start', // 自定义节点类型名称
+    component: StartNode,
+    // @ts-expect-error ignore
+  }, lf.value)
+
   lf.value.render(flowData.value)
+
+  lf.value.on('graph:rendered', ({ graphModel }) => {
+    flowId.value = graphModel.flowId!
+  })
 
   // 监听边点击事件
   lf.value.on('edge:click', ({ data }) => {
@@ -282,6 +301,5 @@ watch([() => isDark.value, () => lf.value], ([newDark, newLf], [oldDark, oldLf])
 }
 .lf-graph-dark {
   background: #000;
-
 }
 </style>

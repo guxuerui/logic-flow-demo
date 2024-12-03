@@ -24,7 +24,6 @@ onMounted(() => {
 
       // 更新逻辑：无 effect 默认更新，有 effect 则需匹配 keys
       if (!effect || keys.some(key => effect.includes(key))) {
-        console.log('eventData --->>>', eventData)
         percentage.value = eventData.properties?.progress || 0
       }
     }

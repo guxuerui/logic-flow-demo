@@ -11,6 +11,9 @@ dependencies:
   '@logicflow/extension':
     specifier: ^2.0.13
     version: 2.0.13(@logicflow/core@2.0.8)
+  '@logicflow/vue-node-registry':
+    specifier: ^1.0.11
+    version: 1.0.11(@logicflow/core@2.0.8)(vue@3.5.13)
   '@vueuse/core':
     specifier: v9.1.0
     version: 9.1.0(vue@3.5.13)
@@ -923,6 +926,22 @@ packages:
       preact: 10.25.0
       rangy: 1.3.2
       vanilla-picker: 2.12.3
+    dev: false
+
+  /@logicflow/vue-node-registry@1.0.11(@logicflow/core@2.0.8)(vue@3.5.13):
+    resolution: {integrity: sha512-j/u8Ubx94OuUaE6wKX5/skdCEDM88H5gyMd1SiNME5favoBAUlz1485/tEjIiB2KUujLR7fA6eQCpu3qo/BSHw==}
+    peerDependencies:
+      '@logicflow/core': 2.0.9
+      '@vue/composition-api': ^1.0.0-rc.10
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@logicflow/core': 2.0.8
+      lodash-es: 4.17.21
+      vue: 3.5.13(typescript@5.7.2)
+      vue-demi: 0.14.10(vue@3.5.13)
     dev: false
 
   /@mdit-vue/plugin-component@0.12.1:
